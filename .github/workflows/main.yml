@@ -35,6 +35,8 @@ jobs:
 
     - name: Install cmake
       uses: lukka/get-cmake@v3.18.0
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     - name: Check cache for Embedded Arm Toolchain arm-none-eabi-gcc
       id:   cache-toolchain
@@ -55,6 +57,8 @@ jobs:
         release: 9-2020-q2
         # Directory to unpack GCC to. Defaults to a temporary directory.
         directory: ${{ runner.temp }}/arm-none-eabi
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     - name: Check cache for nRF5 SDK
       id:   cache-nrf5sdk
@@ -74,6 +78,8 @@ jobs:
         curl https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v15.x.x/nRF5_SDK_15.3.0_59ac345.zip -o nrf5_sdk.zip
         unzip nrf5_sdk.zip
         mv nRF5_SDK_15.3.0_59ac345 nrf5_sdk
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     - name: Check cache for MCUBoot
       id:   cache-mcuboot
@@ -91,15 +97,21 @@ jobs:
       run:  |
         cd ${{ runner.temp }}
         git clone --branch v1.5.0 https://github.com/JuulLabs-OSS/mcuboot
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     - name: Install imgtool dependencies
       run:  pip3 install --user -r ${{ runner.temp }}/mcuboot/scripts/requirements.txt
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     - name: Install adafruit-nrfutil
       run:  |
         pip3 install --user wheel
         pip3 install --user setuptools
         pip3 install --user adafruit-nrfutil
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         
     #########################################################################################
     # Checkout
