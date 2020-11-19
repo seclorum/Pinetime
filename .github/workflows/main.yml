@@ -1,8 +1,11 @@
 # 
+# 
 # GitHub Actions Workflow to build FreeRTOS Firmware for PineTime Smart Watch
 # See https://lupyuen.github.io/pinetime-rust-mynewt/articles/cloud
 # Based on https://github.com/JF002/Pinetime/blob/master/doc/buildAndProgram.md
 # and https://github.com/JF002/Pinetime/blob/master/bootloader/README.md
+
+# ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 # Name of this Workflow
 name: Build PineTime Firmware
@@ -37,6 +40,7 @@ jobs:
       id:   cache-toolchain
       uses: actions/cache@v2
       env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         cache-name: cache-toolchain-9-2020-q2
       with:
         path: ${{ runner.temp }}/arm-none-eabi
@@ -56,6 +60,7 @@ jobs:
       id:   cache-nrf5sdk
       uses: actions/cache@v2
       env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         cache-name: cache-nrf5sdk
       with:
         path: ${{ runner.temp }}/nrf5_sdk
@@ -74,6 +79,7 @@ jobs:
       id:   cache-mcuboot
       uses: actions/cache@v2
       env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         cache-name: cache-mcuboot
       with:
         path: ${{ runner.temp }}/mcuboot
