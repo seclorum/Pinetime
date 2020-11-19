@@ -5,6 +5,8 @@
 # Based on https://github.com/JF002/Pinetime/blob/master/doc/buildAndProgram.md
 # and https://github.com/JF002/Pinetime/blob/master/bootloader/README.md
 
+# ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
 # Name of this Workflow
 name: Build PineTime Firmware
 
@@ -13,11 +15,11 @@ on:
 
   # Run this Workflow when files are updated (Pushed) in the "master" Branch
   push:
-    branches: [ master ]
+    branches: [ main ]
     
   # Also run this Workflow when a Pull Request is created or updated in the "master" Branch
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 # Steps to run for the Workflow
 jobs:
@@ -38,6 +40,7 @@ jobs:
       id:   cache-toolchain
       uses: actions/cache@v2
       env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         cache-name: cache-toolchain-9-2020-q2
       with:
         path: ${{ runner.temp }}/arm-none-eabi
@@ -57,6 +60,7 @@ jobs:
       id:   cache-nrf5sdk
       uses: actions/cache@v2
       env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         cache-name: cache-nrf5sdk
       with:
         path: ${{ runner.temp }}/nrf5_sdk
@@ -75,6 +79,7 @@ jobs:
       id:   cache-mcuboot
       uses: actions/cache@v2
       env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         cache-name: cache-mcuboot
       with:
         path: ${{ runner.temp }}/mcuboot
