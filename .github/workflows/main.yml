@@ -29,13 +29,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
         
     #########################################################################################
     # Download and Cache Dependencies
 
-    - name: set Environment
-      steps:
-        run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
 
     - name: Install cmake
       uses: lukka/get-cmake@v3.18.0
